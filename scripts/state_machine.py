@@ -49,6 +49,6 @@ if __name__ == "__main__":
     sis.start()
 
     outcome = sm.execute()
-    rospy.spin()
+    # rospy.spin()
     print(outcome)
     sis.stop()

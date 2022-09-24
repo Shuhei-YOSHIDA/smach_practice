@@ -44,7 +44,6 @@ if __name__ == "__main__":
         StateMachine.add('state_2', StateB(),
                          transitions={'success': 'end', 'failed': 'state_1'})
 
-    # For smach_viewer (Currently, not for noetic)
     sis = smach_ros.IntrospectionServer('state_machine_server', sm, '/SM_ROOT')
     sis.start()
 

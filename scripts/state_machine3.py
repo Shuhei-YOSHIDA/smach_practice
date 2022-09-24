@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import rospy
 from smach import StateMachine
-from smach_ros import SimpleActionState
+from smach_ros import SimpleActionState, IntrospectionServer
 from smach_practice.msg import SmachPracticeAction, SmachPracticeGoal
 
 
@@ -31,6 +31,11 @@ if __name__ == "__main__":
         StateMachine.add('state_3',
                          SimpleActionState('state_action_server',
                                            SmachPracticeAction, goal=goal_3),
-                         transitions={'succeeded': ''})
+                         transitions={'succeeded': 'succeeded'})
+
+    # For smach_viewer
+    sis = IntrospectionServer('state_machine_server', sm, '/SM_ROOT')
+    sis.start()
+
     outcome = sm.execute()
     print(outcome)
